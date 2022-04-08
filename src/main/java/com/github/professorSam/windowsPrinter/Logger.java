@@ -13,7 +13,11 @@ public class Logger {
 		System.out.println("[Info "+ DateFormat.getInstance().format(Calendar.getInstance().getTime()) +"] " + info);
 	}
 	
+	public static void msg(String msg) {
+		System.out.println("[" + DateFormat.getInstance().format(Calendar.getInstance().getTime()) + "] " + msg);
+	}
+	
 	public static void info(Printer printer) {
-		System.out.println("[Info "+ DateFormat.getInstance().format(Calendar.getInstance().getTime()) +"] " + "Name: " + printer.getDeviceName() + " Standort: " + printer.getPosition() + " Modell: " + printer.getModel() + " Ip: " + printer.getModel());
+		System.out.println("[Info "+ DateFormat.getInstance().format(Calendar.getInstance().getTime()) +"] " + "Name: " + printer.getDeviceName() + " Standort: " + printer.getPosition() + " Modell: " + printer.getModel() + " Ip: " + printer.getIp());
 	}
 }

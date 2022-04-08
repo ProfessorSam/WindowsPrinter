@@ -28,14 +28,32 @@ public class DataProvider {
 				}
 				printers.add(new Printer(args[0], args[1], args[2], args[3]));
 			}
-			printers.forEach(Logger::info);
+			if(Main.isDebug()) {
+				printers.forEach(Logger::info);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		checkDirecories();
+	}
+	
+	private void checkDirecories() {
+		for(Printer printer : printers) {
+			File file = new File("./driver/" + printer.getDeviceName());
+			if(Main.isDebug()) {
+				Logger.info("Überprüfe " + file.getPath());
+			}
+			if(!file.isDirectory() || file.listFiles().length == 0) {
+				Logger.error("Es wurden keine Treiber für " + printer.getDeviceName() + " gefunden!");
+			}
+		}
 	}
 	
 	public static DataProvider getInstance() {
 		return dataProvider;
+	}
+	
+	public List<Printer> getPrinter(){
+		return printers;
 	}
 }
